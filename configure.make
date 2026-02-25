@@ -9,17 +9,17 @@
 OCAML_LIBDIR = $(shell ocamlc -where)
 include $(OCAML_LIBDIR)/Makefile.config
 
-OCAML_PREFIX = $(PREFIX)
+OCAML_PREFIX = $(prefix)
 OCAML_MANDIR = $(MANDIR)
 
 # If you want to affect ocamlbuild's configuration by passing variable
 # assignments to this Makefile, you probably want to define those
 # OCAMLBUILD_* variables.
 
-OCAMLBUILD_PREFIX ?= $(PREFIX)
+OCAMLBUILD_PREFIX ?= $(OCAML_PREFIX)
 OCAMLBUILD_BINDIR ?= \
   $(or $(shell opam config var bin 2>/dev/null),\
-       $(PREFIX)/bin)
+       $(OCAML_PREFIX)/bin)
 OCAMLBUILD_LIBDIR ?= \
   $(or $(shell opam config var lib 2>/dev/null),\
        $(shell ocamlfind printconf destdir 2>/dev/null),\
